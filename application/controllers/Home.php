@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends MY_Controller {
 
     /**
      * Index Page for this controller.
@@ -25,9 +25,25 @@ class Home extends CI_Controller {
     public $template_footer = null;
 
     public function index() {
-        $data = array('page_title' => 'Home Page');
-        $this->load->view('home/index', $data);
-    }
+
+        $data = array('page_title' => 'Home Page', 'current_page' => 'index');
+        $this->load->view('templates/default_nav', $data);
+    }//index()
+
+    public function events() {
+        $data = array('page_title' => 'Event Photography', 'current_page' => 'events');
+        $this->load->view('templates/default_nav', $data);
+    }//events()
+
+    public function portraits() {
+        $data = array('page_title' => 'Portraits', 'current_page' => 'portraits');
+        $this->load->view('templates/default_nav', $data);
+    }//portraits()
+
+    public function about() {
+        $data = array('page_title' => 'About', 'current_page' => 'about');
+        $this->load->view('templates/default_nav', $data);
+    }//about()
 
 //test()
 }
