@@ -7,6 +7,11 @@ $(function(){
         resizePage();
     });
 
+    $('.menu-section a').click( function(){
+        $('.menu-section a').removeClass('menu-section-selected');
+        $(this).addClass('menu-section-selected');
+    });
+
     //init shadowbox
     Shadowbox.init({
         continuous:true,
@@ -19,25 +24,53 @@ $(function(){
     });
 
     $('#events').click(function(){
-
+        event.preventDefault();
+        event.stopPropagation();
+        var pwa_data = pwaGetUserData();
+        console.log(pwa_data);
+        loadPhotoGrid('album', pwa_data.becky.albums.events, function(){padContent()}, pwa_data.becky.id);
     });
 
-    $('#portraits').click(function(){
+    $('#portraits').click(function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        var pwa_data = pwaGetUserData();
+        console.log(pwa_data);
+        loadPhotoGrid('album', pwa_data.cole.albums.album1, function(){padContent()}, pwa_data.cole.id);
 
     });
 
 });
 
+function padContent() {
+    var init_height = $('#content').height();
+    var height = init_height + 110;
+    //alert('init: ' + init_height + ' now:' + height);
+    $('#content').height(height);
+
+    Shadowbox.init({skipSetup: true});
+    Shadowbox.setup();
+
+}//padContent()
+
 function resizePage() {
     var viewport_height = parseInt($(window).height());
     $('#page').height(viewport_height);
+    $('#content-outer').height(viewport_height - 100);
+
+    var viewport_width = parseInt($(window).width());
+    var ideal_width = (viewport_width - 100);
+    var menu_margin = viewport_width - (viewport_width - 100)/2;
+
+    $('.menu').width(ideal_width);
+    $('.menu').css('left', '50px');
+    $('#content').width(ideal_width);
+    $('#content').css('left', '50px');
 
 }//resizePage()
 
-function loadPhotoGrid( type, query, user ) {
-	var callback = function(){ Shadowbox.init({ skipSetup: true }); Shadowbox.setup(); }
-	pwaLoadPhotoGrid( type, query, callback, user );
-
+function loadPhotoGrid( type, query, callback, user ) {
+    pwaLoadPhotoGrid(type, query, callback, user);
 }//loadPhotoGrid()
 
 function getViewportInfo() {

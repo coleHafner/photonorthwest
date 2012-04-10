@@ -93,19 +93,16 @@ function pwaLoadPhotoGrid( type, query, callback, user )
             break;
     }
 
+    //alert('feed_url: ' + photo_feed_url);return;
+
     if( photo_feed_url != false && query != false ) {
 
         var target_name = '#content';
-        var endpoint_name = 'end_waypoint';
         var $target = $(target_name);
-
-        if($('#' + endpoint_name)) {
-            $('#' + endpoint_name).remove();
-        }
 
         //loading...
         showLoader(target_name);
-        //alert( "url: " + photo_feed_url );
+
         //load album
         $.ajax({
             url: photo_feed_url,
@@ -116,9 +113,14 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                 //build html
                 var base_url_split = window.location.toString().split( "#" );
                 var show_meta = ( type == "search" ) ? true : false;
-                var grid_html = '<table class="grid ma_auto"><tr>';
+                var grid_html = '';
                 var base_url = base_url_split[0];
-                var columns = 5;
+
+                //auto calc num columns based on viewport width
+                var photo_width = 187;
+                var viewport_width = $(window).width();
+                var num_cols = viewport_width/photo_width;
+                var columns = Math.floor(num_cols);
 
                 for( i = 0; i < photos.feed.entry.length; i++ )
                 {
@@ -143,7 +145,7 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                     var id_end = photos.feed.entry[i].id.$t.indexOf('?');
                     var photo_id = photos.feed.entry[i].id.$t.slice(id_begin, id_end);
 
-                    grid_html += '<td>';
+                    //grid_html += '<td>';
                     grid_html += '<div class="grid_pic pa_5 box_shadow">';
                     grid_html += '<a href="' + full + '" rel="shadowbox[' + query + ']" title="' + img_title + '">';
                     grid_html += '<img src="' + thumb + '"/></a>';
@@ -153,21 +155,19 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                         grid_html += '<div class="grid_pic_meta al_center" style="display:none;"><a href="' + base_url + '#' + user + '/' + album_id + '">View Album</a></div>';
                     }
 
-
-                    grid_html += '</div></td>';
+                    grid_html += '</div>';
+                    //grid_html += '</div></td>';
                     if (i%columns == columns - 1 ) {
-                        grid_html += '</tr><tr>';
+                        //grid_html += '</tr><tr>';
                     }
 
                 }//loop through photos
 
-                grid_html += '</tr></table>';
+                grid_html += '<div class="clear"></div>';
 
                 //populate content
                 $target.html( grid_html );
-
                 callback();
-                $.waypoints('refresh');
 
             }//end success function
         });
@@ -202,3 +202,16 @@ function pwaGetFeedUrls()
     return urls;
 
 }//pwaGetFeedUrls()
+
+function pwaGetUserData() {
+    return {
+        cole : {
+            id : '106133921811390859024',
+            albums: { album1 : '5575281764283681441'}
+        },
+        becky : {
+            id : '114983953304699001694',
+            albums : { portraits : '5443823936402123633', events : '5443814431662124337'}
+        }
+    };
+}//pwaGetUserData()

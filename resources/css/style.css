@@ -110,13 +110,11 @@ body {
 
 .content {
     position:relative;
-    width:80%;
-    background-color:#cbdedb;
 }
 
 .fl_left { float:left; }
 .fl_right{ float:right; }
-
+/*
 .grid {
     position:relative;
     border-collapse:separate;
@@ -125,6 +123,11 @@ body {
 
 .grid td {
     width:20%;
+}
+*/
+.grid {
+    position:relative;
+    margin:auto;
 }
 
 .grid_pic {
@@ -136,6 +139,8 @@ body {
     overflow:hidden;
     max-height:175px !important;
     max-width:175px !important;
+    margin:3px;
+    float:left;
 }
 
 .grid_pic_meta {
