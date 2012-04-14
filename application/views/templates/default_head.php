@@ -19,8 +19,7 @@
 <body>
 
 <div class="page" id="page">
-        <div id="content-outer" class="content">
-            <div id="content" class="padder-10">
 
-            </div>
-        </div>
+    <div id="content-outer" class="content">
+        <div id="content" class="padder-10">
+

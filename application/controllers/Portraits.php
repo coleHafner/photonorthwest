@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Home extends MY_Controller {
+class Portraits extends MY_Controller {
 
     /**
      * Index Page for this controller.
@@ -26,8 +26,8 @@ class Home extends MY_Controller {
 
     public function index() {
 
-        $data = array('page_title' => 'Home Page', 'current_page' => 'home');
-        $this->load->view('home/index');
+        $data = array('page_title' => 'Portraits', 'current_page' => 'portraits');
+        $this->load->view('portraits/index');
         $this->load->view('templates/default_nav', $data);
     }//index()
 

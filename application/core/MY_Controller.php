@@ -7,7 +7,7 @@ class MY_Controller extends CI_Controller {
     function __construct(){
 
         $this->nav = array(
-            'index' => 'Home',
+            'home' => 'Home',
             'events' => 'Events',
             'portraits' => 'Portraits',
             'about' => 'About',

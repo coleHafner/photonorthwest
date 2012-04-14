@@ -5,6 +5,7 @@ $(function(){
 
     $(window).resize(function(){
         resizePage();
+        resizeModal();
     });
 
     $('.menu-section a').click( function(){
@@ -16,31 +17,25 @@ $(function(){
     Shadowbox.init({
         continuous:true,
         handleOversize:'resize',
-        overlayOpacity:0.8,
-        overlayColor:'#000000',
+        overlayOpacity:0.6,
+        overlayColor:'#ffffff',
         displayNav:true,
         counterType:'default',
         modal:false
     });
-
-    $('#events').click(function(){
-        event.preventDefault();
-        event.stopPropagation();
-        var pwa_data = pwaGetUserData();
-        console.log(pwa_data);
-        loadPhotoGrid('album', pwa_data.becky.albums.events, function(){padContent()}, pwa_data.becky.id);
-    });
-
-    $('#portraits').click(function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        var pwa_data = pwaGetUserData();
-        console.log(pwa_data);
-        loadPhotoGrid('album', pwa_data.cole.albums.album1, function(){padContent()}, pwa_data.cole.id);
-
-    });
-
 });
+
+function loadEventsAlbum() {
+    var pwa_data = pwaGetUserData();
+    loadPhotoGrid('album', pwa_data.becky.albums.events, function(){padContent()}, pwa_data.becky.id);
+
+}//loadEventsAlbum()
+
+function loadPortraitsAlbum() {
+    var pwa_data = pwaGetUserData();
+    loadPhotoGrid('album', pwa_data.cole.albums.album1, function(){padContent()}, pwa_data.cole.id);
+
+}//loadPortraitsAlbum()
 
 function padContent() {
     var init_height = $('#content').height();
@@ -66,6 +61,8 @@ function resizePage() {
     $('.menu').css('left', '50px');
     $('#content').width(ideal_width);
     $('#content').css('left', '50px');
+
+
 
 }//resizePage()
 
@@ -105,3 +102,17 @@ function getViewportInfo() {
     return viewport;
 
 }//getViewportInfo()
+
+function resizeModal() {
+        var doc_height = $(document).height();
+        var menu_height = $('.menu').height();
+        var menu_width = $('.menu').width();
+        var width_offset = 150;
+        var height_offset = 50;
+        var new_height = doc_height - (menu_height + height_offset);
+        var margin = height_offset/2;
+        var $page = $('.centered-modal');
+        $page.height(new_height);
+        $page.width(menu_width - width_offset);
+
+}//resizeModal()

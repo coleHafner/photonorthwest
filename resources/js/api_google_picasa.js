@@ -166,7 +166,8 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                 grid_html += '<div class="clear"></div>';
 
                 //populate content
-                $target.html( grid_html );
+                $('#loader').remove();
+                $target.prepend( grid_html );
                 callback();
 
             }//end success function

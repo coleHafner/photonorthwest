@@ -2,6 +2,8 @@ body {
     margin:0;
     padding:0;
     background-color: #ccc;
+    background-image: url('/resources/images/Texture0203.jpg');
+    background-repeat: repeat-x repeat-y;
 }
 
 .page {
@@ -72,4 +74,17 @@ body {
     position:relative;
     width:120px;
     margin:auto;
+}
+
+.centered-modal {
+    position:relative;
+    padding:10px;
+    box-shadow:3px 3px 5px rgba(0,0,0,.7);
+    margin:auto;
+    background-color:#fff;
+}
+
+.centered-modal-inner {
+    border:1px solid #999;
+    padding:10px;
 }

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Home extends MY_Controller {
+class Events extends MY_Controller {
 
     /**
      * Index Page for this controller.
@@ -26,8 +26,8 @@ class Home extends MY_Controller {
 
     public function index() {
 
-        $data = array('page_title' => 'Home Page', 'current_page' => 'home');
-        $this->load->view('home/index');
+        $data = array('page_title' => 'Events', 'current_page' => 'events');
+        $this->load->view('events/index');
         $this->load->view('templates/default_nav', $data);
     }//index()
 

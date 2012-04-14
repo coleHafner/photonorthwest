@@ -8,5 +8,5 @@
     $(window).load(function(){
         resizeModal();
     });
-    
+
 </script>
