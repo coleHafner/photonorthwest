@@ -97,11 +97,12 @@ function pwaLoadPhotoGrid( type, query, callback, user )
 
     if( photo_feed_url != false && query != false ) {
 
+        var loader_name = '#loader';
         var target_name = '#content';
         var $target = $(target_name);
 
         //loading...
-        showLoader(target_name);
+        showLoader(target_name, loader_name);
 
         //load album
         $.ajax({
@@ -166,7 +167,7 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                 grid_html += '<div class="clear"></div>';
 
                 //populate content
-                $('#loader').remove();
+                $(loader_name).remove();
                 $target.prepend( grid_html );
                 callback();
 

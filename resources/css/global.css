@@ -3,6 +3,8 @@ body {
     padding:0;
     background-color: #ccc;
     background-image: url('/resources/images/Texture0203.jpg');
+    /*background-image: url('/resources/images/Texture0217.jpg');*/
+    background-attachment:fixed;
     background-repeat: repeat-x repeat-y;
 }
 

@@ -48,13 +48,12 @@ function readAnchor()
 
 }//readAnchor()
 
-function showLoader( class_or_id ) {
+function showLoader(class_or_id, loader_id) {
 
     var $container = $(class_or_id);
 
     if( validateElement( class_or_id ) == true ) {
-
-        $container.prepend('<div id="loader">Loading...</div>');
+        $container.prepend('<div id="' + loader_id.replace('#', '') + '">Loading...</div>');
     }
 
 }//showLoader()
