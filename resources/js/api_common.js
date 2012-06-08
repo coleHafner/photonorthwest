@@ -4,82 +4,82 @@ uri  = window.location.href.replace(/&amp;/g, '&');
 
 function readGet()
 {
-	var get = false
-	var para_arr, para_split;
+   var get = false
+   var para_arr, para_split;
 
-	if( uri.indexOf('?') > -1 )
-	{
-		var uri_split = uri.split('?');
-		var para_str = uri_split[1];
-		get = new Array();
+   if( uri.indexOf('?') > -1 )
+   {
+      var uri_split = uri.split('?');
+      var para_str = uri_split[1];
+      get = new Array();
 
-		if( para_str.indexOf( '&' ) > -1 )
-		{
-			para_arr = para_str.split( '&' );
-		}
-		else
-		{
-			para_arr = new Array( para_str );
-		}
+      if( para_str.indexOf( '&' ) > -1 )
+      {
+	 para_arr = para_str.split( '&' );
+      }
+      else
+      {
+	 para_arr = new Array( para_str );
+      }
 
-		for( var i = 0; i < para_arr.length; i++ )
-		{
-			para_arr[i] = para_arr[i].indexOf('=') > -1 ? para_arr[i] : para_arr[i] + '=';
-			para_split  = para_arr[i].split('=');
-			get[para_split[0]] = decodeURI( para_split[1].replace(/\+/g, ' ' ) );
-		}
-	}
+      for( var i = 0; i < para_arr.length; i++ )
+      {
+	 para_arr[i] = para_arr[i].indexOf('=') > -1 ? para_arr[i] : para_arr[i] + '=';
+	 para_split  = para_arr[i].split('=');
+	 get[para_split[0]] = decodeURI( para_split[1].replace(/\+/g, ' ' ) );
+      }
+   }
 
-	return get;
+   return get;
 
 }//readGet()
 
 function readAnchor()
 {
-	var anchor = false;
+   var anchor = false;
 
-	if( uri.indexOf('#') > -1 )
-	{
-		var anchor_split = uri.split('#');
-		anchor = anchor_split[1];
-	}
+   if( uri.indexOf('#') > -1 )
+   {
+      var anchor_split = uri.split('#');
+      anchor = anchor_split[1];
+   }
 
-	return anchor;
+   return anchor;
 
 }//readAnchor()
 
 function showLoader(class_or_id, loader_id) {
 
-    var $container = $(class_or_id);
+   var $container = $(class_or_id);
 
-    if( validateElement( class_or_id ) == true ) {
-        $container.prepend('<div id="' + loader_id.replace('#', '') + '">Loading...</div>');
-    }
+   if( validateElement( class_or_id ) == true ) {
+      $container.prepend('<div id="' + loader_id.replace('#', '') + '"><img src="/resources/images/ajax-loader.gif" /></div>');
+   }
 
 }//showLoader()
 
 function validateElement( class_or_id )
 {
-	var is_valid = true;
-	class_or_id = class_or_id.toString();
-	var first_char = class_or_id.charAt( 0 );
+   var is_valid = true;
+   class_or_id = class_or_id.toString();
+   var first_char = class_or_id.charAt( 0 );
 
-	if( ( first_char != "." && first_char != "#" ) ||
-		$( class_or_id ).length == 0 )
-	{
-		is_valid = false;
-		alert( "Error: Element '" + class_or_id + "' does not exist." );
-	}
+   if( ( first_char != "." && first_char != "#" ) ||
+      $( class_or_id ).length == 0 )
+      {
+      is_valid = false;
+      alert( "Error: Element '" + class_or_id + "' does not exist." );
+   }
 
-	return is_valid;
+   return is_valid;
 
 }//validateElement()
 
 function getHeight( el, css_attr )
 {
-	if( validateElement( el ) == true )
-	{
-		css_attr = ( css_attr == false ) ? "height" : css_attr;
-		return parseInt( $( el ).css( css_attr ).toString().replace( "px", "" ) );
-	}
+   if( validateElement( el ) == true )
+   {
+      css_attr = ( css_attr == false ) ? "height" : css_attr;
+      return parseInt( $( el ).css( css_attr ).toString().replace( "px", "" ) );
+   }
 }//getHeight()

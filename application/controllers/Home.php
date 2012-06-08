@@ -26,9 +26,8 @@ class Home extends MY_Controller {
 
     public function index() {
 
-        $data = array('page_title' => 'Home Page', 'current_page' => 'home');
-        $this->load->view('home/index');
-        $this->load->view('templates/default_nav', $data);
+        $data = array('page_title' => 'Home', 'current_page' => 'home');
+        $this->load->view('home/index', $data);
     }//index()
 
 //test()

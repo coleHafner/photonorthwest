@@ -103,7 +103,7 @@ function pwaLoadPhotoGrid( type, query, callback, user )
 
         //loading...
         showLoader(target_name, loader_name);
-
+	
         //load album
         $.ajax({
             url: photo_feed_url,
@@ -114,7 +114,6 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                 //build html
                 var base_url_split = window.location.toString().split( "#" );
                 var show_meta = ( type == "search" ) ? true : false;
-                var grid_html = '';
                 var base_url = base_url_split[0];
 
                 //auto calc num columns based on viewport width
@@ -122,6 +121,8 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                 var viewport_width = $(window).width();
                 var num_cols = viewport_width/photo_width;
                 var columns = Math.floor(num_cols);
+
+		var grid_html = '<div class="pics-grid">';
 
                 for( i = 0; i < photos.feed.entry.length; i++ )
                 {
@@ -165,6 +166,7 @@ function pwaLoadPhotoGrid( type, query, callback, user )
                 }//loop through photos
 
                 grid_html += '<div class="clear"></div>';
+		grid_html += '</div>';
 
                 //populate content
                 $(loader_name).remove();
